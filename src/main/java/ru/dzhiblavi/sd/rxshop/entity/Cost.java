@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cost {
-    enum Currency {
+    public enum Currency {
         RUB,
         EUR,
         USD
@@ -13,8 +13,8 @@ public class Cost {
     private final static Map<Currency, Double> currencyUsdValue = new HashMap<>();
 
     static {
-        currencyUsdValue.put(Currency.RUB, 500.0);
-        currencyUsdValue.put(Currency.EUR, 1.2);
+        currencyUsdValue.put(Currency.RUB, 150.0);
+        currencyUsdValue.put(Currency.EUR, 0.8);
         currencyUsdValue.put(Currency.USD, 1.0);
     }
 

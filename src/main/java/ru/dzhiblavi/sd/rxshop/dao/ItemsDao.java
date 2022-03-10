@@ -1,5 +1,7 @@
 package ru.dzhiblavi.sd.rxshop.dao;
 
+import com.mongodb.client.result.DeleteResult;
+import org.bson.BsonDocument;
 import rx.Observable;
 import com.mongodb.rx.client.MongoCollection;
 import com.mongodb.rx.client.MongoDatabase;
@@ -15,7 +17,7 @@ public class ItemsDao extends MongoDao {
     }
 
     private MongoCollection<Document> getCollection() {
-        return this.mongoDatabase.getCollection(Item.class.getName());
+        return this.mongoDatabase.getCollection(Item.DAO_NAME);
     }
 
     public Observable<Success> add(final Item item) {
@@ -24,5 +26,9 @@ public class ItemsDao extends MongoDao {
 
     public Observable<Item> getAll() {
         return getCollection().find().toObservable().map(Item::fromDocument);
+    }
+
+    public Observable<DeleteResult> clear() {
+        return getCollection().deleteMany(new Document());
     }
 }
